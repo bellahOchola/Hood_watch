@@ -38,7 +38,12 @@ def profile(request, username):
     return render(request, 'profile.html', {'form': form}, {'users':users})
 
 
-
 def index(request):
     hoods = Hood.objects.all()
-    return render(request, 'index.html', {'hoods':hoods})
+    return render(request, 'index.html')
+
+def hood(request):
+    hoods = Hood.objects.all()
+    return render(request, 'hood.html', {'hoods':hoods})
+
+
