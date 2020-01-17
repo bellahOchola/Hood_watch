@@ -4,5 +4,6 @@
 <h1>HELLOW</h1>
 {% for hood in hoods %}
 <h1>{{hood.name}}</h1>
+<a href="{% url 'single_hood' %}"><button type="submit" class="btn btn-danger">JOIN</button></a>
 {% endfor %}
 {% endblock %}

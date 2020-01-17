@@ -35,3 +35,7 @@ class Hood(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=200)
 
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField(max_length=700)
+    posted = models.DateTimeField(auto_now_add = True)

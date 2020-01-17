@@ -46,4 +46,15 @@ def hood(request):
     hoods = Hood.objects.all()
     return render(request, 'hood.html', {'hoods':hoods})
 
+def single_hood(request):
+    form = CreatePost(request.POST)
+
+    if form.is_valid():
+        form.save()
+        return redirect('single_hood')
+
+    else:
+        form = CreatePost()
+    return render(request, 'single_hood.html' {'form':form})
+
 
