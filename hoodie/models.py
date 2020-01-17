@@ -6,11 +6,24 @@ from django.dispatch import receiver
 
 # Create your models here.
 
+class Hood(models.Model):
+    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=200)
+
+    def save_hood(self):
+        self.save()
+
+    def delete_hood(self):
+        self.delete()
+
+
+
 class Profile(models.Model):
     bio = models.TextField(max_length = 500)
     profile_pic = ImageField(blank=True, manual_crop="")
     location = models.CharField(max_length = 100) 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', null=True)
+    hood = models.ForeignKey(Hood, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'
@@ -31,14 +44,19 @@ class Profile(models.Model):
         self.delete()
 
 
-class Hood(models.Model):
-    name = models.CharField(max_length=100)
-    location = models.CharField(max_length=200)
+
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField(max_length=700)
     posted = models.DateTimeField(auto_now_add = True)
+
+    def save_post(self):
+        self.save()
+
+    def delete_post(self):
+        self.delete()
+
 
 class Business(models.Model):
     name = models.CharField(max_length=100)

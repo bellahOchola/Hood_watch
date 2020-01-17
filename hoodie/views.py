@@ -44,10 +44,14 @@ def index(request):
 
 def hood(request):
     hoods = Hood.objects.all()
+    # hood = Hood.objects.get()
+    # import pdb; pdb.set_trace()
+
     return render(request, 'hood.html', {'hoods':hoods})
 
-def single_hood(request):
+def single_hood(request,hood):
     posts = Post.objects.all()
+    hood = Hood.objects.get(name=hood)
     # import pdb; pdb.set_trace()
     if request.method == 'POST':
         form = CreatePost(request.POST)
@@ -59,7 +63,7 @@ def single_hood(request):
     else:
         form = CreatePost()
 
-    return render(request, 'single_hood.html', {'form':form,'posts':posts})
+    return render(request, 'single_hood.html', {'form':form,'hood':hood, 'posts':posts})
 
     
 

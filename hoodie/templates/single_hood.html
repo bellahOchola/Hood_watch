@@ -36,9 +36,9 @@
                 </div>
             </div>
 
-bhhhh
             {% for post in posts %}
             <h2>{{post.title}}</h2>
+            <p>{{post.posted|date}}</p>
             
             {% endfor %}
 

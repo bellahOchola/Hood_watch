@@ -7,5 +7,5 @@ urlpatterns = [
     path('profile/<username>', views.profile, name='profile'),
     path('', views.index, name='index'),
     path('hood/', views.hood, name='hood'),
-    path('single_hood/', views.single_hood, name='single_hood'),
+    path('single_hood/<hood>', views.single_hood, name='single_hood'),
 ]
