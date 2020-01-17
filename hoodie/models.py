@@ -33,5 +33,5 @@ class Profile(models.Model):
 
 class Hood(models.Model):
     name = models.CharField(max_length=100)
-    location = models.CharField(ma)
+    location = models.CharField(max_length=200)
 

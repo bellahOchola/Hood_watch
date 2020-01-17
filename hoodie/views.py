@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
+from .models import Hood
 
 
 # Create your views here.
@@ -39,4 +40,5 @@ def profile(request, username):
 
 
 def index(request):
-    return render(request, 'index.html')
+    hoods = Hood.objects.all()
+    return render(request, 'index.html', {'hoods':hoods})
