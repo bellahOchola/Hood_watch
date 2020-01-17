@@ -39,3 +39,8 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField(max_length=700)
     posted = models.DateTimeField(auto_now_add = True)
+
+class Business(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=200, help_text='Required. Inform a valid email address.')
+    hood_id = models.ForeignKey(Hood, on_delete=models.CASCADE, null=True)

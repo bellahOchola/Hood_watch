@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from .forms import RegistrationForm,UploadProfile
+from .forms import RegistrationForm,UploadProfile,CreatePost
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-from .models import Hood
+from .models import Hood, Post
 
 
 # Create your views here.
@@ -47,14 +47,20 @@ def hood(request):
     return render(request, 'hood.html', {'hoods':hoods})
 
 def single_hood(request):
-    form = CreatePost(request.POST)
-
-    if form.is_valid():
-        form.save()
-        return redirect('single_hood')
-
+    posts = Post.objects.all()
+    # import pdb; pdb.set_trace()
+    if request.method == 'POST':
+        form = CreatePost(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user.profile
+            post.save()
+            return redirect('single_hood')
     else:
         form = CreatePost()
-    return render(request, 'single_hood.html' {'form':form})
+
+    return render(request, 'single_hood.html', {'form':form,'posts':posts})
+
+    
 
 
