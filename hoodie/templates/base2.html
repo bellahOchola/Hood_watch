@@ -11,9 +11,10 @@
 
   {%if title%}
 
-    <title>{{title}}</title>
+  <title>{{title}}</title>
   {% else %}
-    <title>Hood-Watch</title>
+  <title>Hood_Watch</title>
+
   {%endif%}
 
   {% block styles %}
@@ -23,13 +24,14 @@
 </head>
 
 <body>
-  
+
   <style>
-     {% include 'navbar.html' %}
     body {
       font-family: 'Open Sans Condensed', sans-serif;
     }
   </style>
+
+  {% include 'navbar.html' %}
   {% block content %}
 
   {%endblock%}
@@ -37,6 +39,7 @@
 
   {% block scripts %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
   {% bootstrap_javascript %}
   {% endblock %}
 
