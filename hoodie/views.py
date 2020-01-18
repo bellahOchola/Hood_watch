@@ -67,6 +67,8 @@ def single_hood(request,id):
 
     return render(request, 'single_hood.html', {'form':form,'hood':hood, 'posts':posts})
 
+
+
     
 
 
