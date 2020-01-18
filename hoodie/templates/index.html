@@ -1,9 +1,14 @@
 {% extends 'base2.html'%}
 
 {% block content %}
-<div style="">
-    <img src="https://cdn.pixabay.com/photo/2016/06/24/10/47/architecture-1477041_960_720.jpg" width="100%" height="615px" alt="homepage">
 
+<div style="background-image: url('https://cdn.pixabay.com/photo/2017/01/09/15/29/house-1966824_960_720.jpg'); background-size: 100% 100%; background-repeat: no-repeat;  height: 615px;">
+    <img src="" alt="">
+    <div class="text-center text-white" style="margin-top:15%">
+        <strong><h1>WELCOME TO HOODWATCH</h1></strong>
+        <h4>Get started by joining a Hood Today</h4>
+        <a class="btn btn-info" href="{% url 'hood' %}">JOIN HOOD</a>
+    </div>
 </div>
 
 {% endblock %}

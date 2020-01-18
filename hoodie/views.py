@@ -84,6 +84,9 @@ def create_business(request, id):
 
     return render(request, 'business.html', {'form':form})
 
+def search_business(request):
+    return renderr
+
 
     
 
