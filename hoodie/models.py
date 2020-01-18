@@ -66,3 +66,10 @@ class Business(models.Model):
     email = models.EmailField(max_length=200, help_text='Required. Inform a valid email address.')
     hoodie = models.ForeignKey(Hood, on_delete=models.CASCADE, null=True)
     description= models.TextField(null=True)
+
+     def save_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+
