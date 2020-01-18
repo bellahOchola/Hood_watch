@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import RegistrationForm,UploadProfile,CreatePost
+from .forms import RegistrationForm,UploadProfile,CreatePost, BusinessForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, get_object_or_404
@@ -67,6 +67,20 @@ def single_hood(request,id):
 
     return render(request, 'single_hood.html', {'form':form,'hood':hood, 'posts':posts})
 
+
+def create_business(request):
+    if request.method == 'POST':
+        form = BusinessForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            # post.hood=hood
+            post.user = request.user.profile
+            post.save()
+            return redirect('single_hood', hood.id)
+    else:
+        form = BusinessForm()
+
+    return render(request, 'business.html', {'form':form})
 
 
     
