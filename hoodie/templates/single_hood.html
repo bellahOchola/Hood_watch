@@ -11,7 +11,8 @@
                 <button class="btn btn-sm btn-outline-danger ml-4 mb-3" data-toggle="modal" data-target="#Upload">
                     Create Post
                 </button>
-                <a href="{% url 'create_business' hood.id %}"><button class="btn btn-sm btn-outline-success ml-4 mb-3">Create Business</button></a>
+                <a href="{% url 'create_business' hood.id %}"><button
+                        class="btn btn-sm btn-outline-success ml-4 mb-3">Add Business</button></a>
                 <div class="modal fade" id="Upload" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -36,17 +37,40 @@
                     </div>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-body">
+                    <p>Police_Line: {{hood.police_line}}</p>
+                    <p>Location: {{hood.location}}</p>
+                    <p>Hospital_Info: {{hood.hospital_info}}</p>
 
+
+                </div>
+            </div>
+            <h2>Posts</h2>
             {% for post in posts %}
-            <h2>{{post.title}}</h2>
-            <p>{{post.posted|date}}</p>
-
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="card-text">{{post.content}}</p>
+                    <p class="card-text">{{post.posted|date}}</p>
+                </div>
+            </div>
             {% endfor %}
 
+            <hr>
+
+            <h2>Businesses</h2>
             {% for busss in business %}
-            <h2>{{busss.name}}</h2>
+            <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{busss.name}}</h5>
+                        <p class="card-text">{{busss.description}}</p>
+                        <p class="card-text">{{busss.email}}</p>
+                    </div>
+                </div>
 
             {% endfor %}
+            <hr>
 
 
 

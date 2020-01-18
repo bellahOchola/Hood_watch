@@ -1,6 +1,6 @@
 # Hood_watch
 
-#### The application will allow a user to post a project he/she has created and get it reviewed by his/her peers. 18/01/2020
+#### The application will allow a user to join a hood and view the hoods details 18/01/2020
 
 >[bellahOchola](https://github.com/bellahOchola)
 
