@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from .models import Hood, Post, Profile, Business
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -23,6 +24,8 @@ def signup(request):
         form = RegistrationForm()
     return render(request, 'registration/signup.html', {'form':form})
 
+
+@login_required(login_url='login')
 def profile(request, username):
     users = get_object_or_404(User, username=username)
     form = UploadProfile(request.POST,request.FILES, instance=request.user.profile)
@@ -39,9 +42,11 @@ def profile(request, username):
 
 
 def index(request):
-    hoods = Hood.objects.all()
     return render(request, 'index.html')
+    
 
+
+@login_required(login_url='login')
 def hood(request):
     hoods = Hood.objects.all()
     # hood = Hood.objects.get()
@@ -49,6 +54,8 @@ def hood(request):
 
     return render(request, 'hood.html', {'hoods':hoods})
 
+
+@login_required(login_url='login')
 def single_hood(request,id):
     hood = Hood.objects.get(id=id)
     posts = Post.objects.filter(hood=hood)
@@ -69,6 +76,7 @@ def single_hood(request,id):
     return render(request, 'single_hood.html', {'form':form,'hood':hood, 'posts':posts, 'business':business})
 
 
+@login_required(login_url='login')
 def create_business(request, id):
     hood = Hood.objects.get(id=id)
     if request.method == 'POST':
@@ -84,10 +92,19 @@ def create_business(request, id):
 
     return render(request, 'business.html', {'form':form})
 
-def search_business(request):
-    return renderr
 
+@login_required(login_url='login')
+def search_business(request):
+    if request.method == 'GET':
+        name = request.GET.get('title')
+        results = Business.objects.filter(name__icontains=name).all()
+        message = f'name'
+
+        return render(request, 'search.html', {'results':results, 'message':message} )
+    else:
+        message = "You haven't searched for any Business"
+
+    return render(request, 'search.html', {'results':results, 'message':message} )
 
     
-
 
