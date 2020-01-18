@@ -9,6 +9,7 @@ from django.dispatch import receiver
 
 class Hood(models.Model):
     name = models.CharField(max_length=100)
+    description=models.TextField(blank=True)
     location = models.CharField(max_length=200)
     police_line = models.CharField(max_length=200, blank=True,)
     hood_pic = ImageField(blank=True, manual_crop="")
@@ -67,7 +68,7 @@ class Business(models.Model):
     hoodie = models.ForeignKey(Hood, on_delete=models.CASCADE, null=True)
     description= models.TextField(null=True)
 
-     def save_business(self):
+    def save_business(self):
         self.save()
 
     def delete_business(self):

@@ -1,9 +1,21 @@
 {% extends 'base2.html'%}
 
 {% block content %}
-<h1>HELLOW</h1>
-{% for hood in hoods %}
-<h1>{{hood.name}}</h1>
-<a href="{% url 'single_hood' hood.id %}"><button type="submit" class="btn btn-danger">JOIN</button></a>
-{% endfor %}
+<div class="container">
+    <div class="row">
+        {% for hood in hoods %}
+        <div class="card" style="width: 18rem; margin-right: 50px; margin-top: 10%;">
+            <img src="{{hood.hood_pic.cdn_url}}" class="card-img-top" alt="{{hood.name}}">
+            <div class="card-body">
+                <h5 class="card-title">{{hood.name}}</h5>
+                <p class="card-text">{{hood.description}}</p>
+                <a href="{% url 'single_hood' hood.id %}" class="btn btn-info">Join Hood</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
 {% endblock %}
