@@ -12,11 +12,11 @@ To get the project .......
   
 ##### Cloning the repository:  
  ```bash 
-https://github.com/Owiti-Charles/HoodWatch.git
+https://github.com/bellahOchola/Hood_watch.git
 ```
 ##### Navigate into the folder and install requirements  
  ```bash 
-cd HoodWatch 
+cd Hood_watch 
 ```
 ##### Install and activate Virtual  
  ```bash 
@@ -46,11 +46,6 @@ python manage.py makemigrations hood
 Open the application on your browser `127.0.0.1:8000`. 
 
 ## Live Page
-
-
-## Screenshots
-
-<img src="https://ucarecdn.com/457f313d-4181-4d86-aca7-a91151d80707/hoodwatch.png">
 
 ## User Story  
   
