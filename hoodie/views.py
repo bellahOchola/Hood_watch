@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-from .models import Hood, Post
+from .models import Hood, Post, Profile, Business
 
 
 # Create your views here.
@@ -49,17 +49,19 @@ def hood(request):
 
     return render(request, 'hood.html', {'hoods':hoods})
 
-def single_hood(request,hood):
-    posts = Post.objects.all()
-    hood = Hood.objects.get(name=hood)
+def single_hood(request,id):
+    hood = Hood.objects.get(id=id)
+    posts = Post.objects.filter(hood=hood)
+    posts = posts[::-1]
     # import pdb; pdb.set_trace()
     if request.method == 'POST':
         form = CreatePost(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
+            post.hood=hood
             post.user = request.user.profile
             post.save()
-            return redirect('single_hood')
+            return redirect('single_hood', hood.id)
     else:
         form = CreatePost()
 

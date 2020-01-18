@@ -17,6 +17,19 @@ class Hood(models.Model):
         self.delete()
 
 
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField(max_length=700)
+    posted = models.DateTimeField(auto_now_add = True)
+    hood = models.ForeignKey(Hood, on_delete=models.CASCADE, null=True)
+
+    def save_post(self):
+        self.save()
+
+    def delete_post(self):
+        self.delete()
+
+
 
 class Profile(models.Model):
     bio = models.TextField(max_length = 500)
@@ -44,21 +57,7 @@ class Profile(models.Model):
         self.delete()
 
 
-
-
-class Post(models.Model):
-    title = models.CharField(max_length=100)
-    content = models.TextField(max_length=700)
-    posted = models.DateTimeField(auto_now_add = True)
-
-    def save_post(self):
-        self.save()
-
-    def delete_post(self):
-        self.delete()
-
-
 class Business(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=200, help_text='Required. Inform a valid email address.')
-    hood_id = models.ForeignKey(Hood, on_delete=models.CASCADE, null=True)
+    hoodie = models.ForeignKey(Hood, on_delete=models.CASCADE, null=True)
