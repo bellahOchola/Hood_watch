@@ -52,6 +52,7 @@ def hood(request):
 def single_hood(request,id):
     hood = Hood.objects.get(id=id)
     posts = Post.objects.filter(hood=hood)
+    business = Business.objects.filter(hoodie=hood)
     posts = posts[::-1]
     # import pdb; pdb.set_trace()
     if request.method == 'POST':
@@ -65,15 +66,16 @@ def single_hood(request,id):
     else:
         form = CreatePost()
 
-    return render(request, 'single_hood.html', {'form':form,'hood':hood, 'posts':posts})
+    return render(request, 'single_hood.html', {'form':form,'hood':hood, 'posts':posts, 'business':business})
 
 
-def create_business(request):
+def create_business(request, id):
+    hood = Hood.objects.get(id=id)
     if request.method == 'POST':
         form = BusinessForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            # post.hood=hood
+            post.hoodie=hood
             post.user = request.user.profile
             post.save()
             return redirect('single_hood', hood.id)
